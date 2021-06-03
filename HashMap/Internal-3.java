@@ -11,39 +11,31 @@ public class Solution {
        if(arr.length == 0)
 			return 0;
 		
-		int pairCounter = 0;
+		if(arr.length == 0)
+			return;
 		HashMap<Integer,Integer> map = new HashMap<>();
-		// storing the frequency of the elements in the hash-map
+		int counter = 0;
+		// finding all the pairs in the single pass
+		int zero = 0;
 		for(int i=0;i<arr.length;i++)
 		{
+			if(arr[i] == 0)
+			{
+				zero++;
+				continue;
+			}
 			if(map.containsKey(arr[i]))
 			{
-				map.put(arr[i], map.get(arr[i])+1);
+				int value = map.get(arr[i]);
+				map.put(arr[i],value+1);
 			}
 			else
 				map.put(arr[i], 1);
+			if(map.containsKey(-arr[i]))
+				counter+=map.get(-arr[i]);
 		}
-		// finding the pairs
-		
-		Set<Integer> keys = map.keySet();
-		int temp = 0;
-		for(int i:keys)
-		{
-			if(map.containsKey(-i))
-			{
-				if(i == 0)
-				{
-					int values = map.get(0);
-					if(values > 1)
-					{
-						pairCounter = ((values-1)*values)/2;
-					}
-				}
-				else
-					temp+=(map.get(i)*map.get(-i));
-			}
-		}
-		pairCounter+=temp/2;
-        return pairCounter;
+		counter = counter+((zero-1)*zero)/2;
+		System.out.println(counter);
+        return counter;
 	}
 }
