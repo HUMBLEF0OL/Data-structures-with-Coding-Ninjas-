@@ -27,19 +27,7 @@ public class Solution {
 		}
 		for(int i= 0;i<arr.length;i++)
 		{
-			// int temp = k-arr[i];
-			// int t2 = k+arr[i];
-			// if(map.containsKey(temp))
-			// {
-			// 	pairCounter += map.get(temp)*map.get(arr[i]);
-			// }
-			// if(map.containsKey(t2))
-			// {
-			// 	pairCounter += map.get(t2)*map.get(arr[i]);
-			// }
-			// // setting the frequency of arr[i] to 0
-			// map.put(arr[i],0);
-            if(map.containsKey(arr[i] - k) && k!=0 ) {
+            		if(map.containsKey(arr[i] - k) && k!=0 ) {
 
 				pairCounter+=map.get(arr[i]-k);
 
