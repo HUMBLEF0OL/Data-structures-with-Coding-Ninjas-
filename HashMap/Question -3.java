@@ -47,4 +47,36 @@ public class Solution {
 		}
 		return pairCounter;
 	}
+	// the time  complexity of this method is O(nlogn);
+	public static void method2(int arr[],int k)
+	{
+		
+		Arrays.sort(arr);
+		if(arr[0] == arr[arr.length-1])
+		{
+			int value = (arr[0]*(arr[0]-1))/2;
+			System.out.println(value);
+			return ;
+		}
+		int i =0;
+		int j =0;
+		int count = 0;
+		while(i<arr.length-1)
+		{
+			if(arr[j]-arr[i]==k)
+			{
+				i++;j++;
+				count++;
+			}
+			else if(arr[j]-arr[i]<k)
+			{
+				j++;
+			}
+			else
+				i++;
+			if(i==arr.length-1 || j== arr.length)
+				break;
+		}
+		System.out.println(count);
+	}
 }
