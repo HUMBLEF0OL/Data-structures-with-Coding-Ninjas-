@@ -1,54 +1,25 @@
-import java.util.*;
-public class Solution {
-
-	public static int lengthOfLongestSubsetWithZeroSum(int arr[]) {
-		// Write your code here
-       if(arr.length == 0)
+// base case\
+		if(arr.length == 0)
 			return 0;
 		HashMap<Integer,Integer> map = new HashMap<>();
-		int max = -1;
+		// initializing the hash map with the default values
+		//sum = 0, index = -1
+		map.put(0, -1);
 		int sum = 0;
-		int secondary = 0;
-        // special case -> when the sum of the whole array is 0
-		for(int i: arr)
+		int max = 0;
+		for(int i = 0;i<arr.length;i++)
 		{
-			secondary+=i;
-		}
-		if(secondary == 0)
-			return arr.length;
-		for(int i=0;i<arr.length;i++)
-		{
-			
 			sum+=arr[i];
+			// if the element is already present then we will not insert it again
 			if(map.containsKey(sum))
 			{
-//				map.put(sum, i)
-				int temp = i-map.get(sum);
-				if(temp>max)
-					max = temp;
+				//if the sum repeats => then sum of element in between must be 0
+				int length = i - map.get(sum);
+				if(length > max)
+					max = length;
 			}
-			else {
-				map.put(sum,i);
-			}
-			if(sum == 0)
-			{
-				// go back
-				int j = i-1;
-				int counter = 1;
-				int tempSum = arr[i];
-				while(j>=0)
-				{
-					if(tempSum == 0)
-						break;
-					tempSum+=arr[j];
-					j--;
-					counter++;
-				}
-				
-				if(counter>max)
-					max = counter;
-			}
+			else
+				map.put(sum, i);
 		}
+		System.out.println("Max length is => "+max);
 		return max;
-	}
-}
