@@ -1,34 +1,31 @@
-import java.util.*;
-public class Solution {
-
-    public static int maxFrequencyNumber(int[] arr){ 
-        if(arr.length == 0)
-            return -1;
-		int maxFreq = Integer.MIN_VALUE;
-		int number = arr[0];
+if(arr.length== 0)
+			return -1;
+			
+		int maxFreq = 0;
+		int number = -1;
+		ArrayList<Integer> list = new ArrayList<>();
 		HashMap<Integer,Integer> map = new HashMap<>();
 		
 		for(int i=0;i<arr.length;i++)
 		{
 			if(map.containsKey(arr[i]))
 			{
-				map.put(arr[i],map.get(arr[i])+1);
+				int value = map.get(arr[i]);
+				map.put(arr[i],value+1);
 			}
 			else {
 				map.put(arr[i], 1);
+				list.add(arr[i]);
 			}
 		}
-		// using set data structure
-		Set<Integer> keySet = map.keySet();
-		for(Integer i:keySet)
+		for(int i=0;i<list.size();i++)
 		{
-			if(map.get(i) > maxFreq)
+			int current = map.get(list.get(i));
+			if(maxFreq< current)
 			{
-				number = i;
 				maxFreq = map.get(i);
+				number = list.get(i);
 			}
 		}
+		
 		return number;
-    }
-}
-
