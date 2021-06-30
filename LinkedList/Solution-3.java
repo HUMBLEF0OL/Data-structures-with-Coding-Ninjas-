@@ -15,24 +15,22 @@
 
 public class Solution {
 	public static LinkedListNode<Integer> removeDuplicates(LinkedListNode<Integer> head) 
-    {
-		LinkedListNode<Integer> temp = head;
-		if(temp != null)
-		{
-			int data = temp.data;
-			while(temp.next != null)
+    	{
+		if(head==null || head.next==null)
+        		return head;
+		LinkedListNode<Integer> temp1 = head;
+
+		    while(temp1.next!=null)
+		    {
+			if(temp1.data.equals(temp1.next.data))
 			{
-				if(temp.next.data == data)
-				{
-					temp.next = temp.next.next;
-				}
-				else
-				{
-					data = temp.next.data;
-					temp = temp.next;
-				}
-			}
-		}
+			    temp1.next= temp1.next.next;
+
+			} 
+			else
+				temp1= temp1.next;
+		    } 
+
 		return head;
 	}
 
